@@ -55,3 +55,47 @@ def test_render_both_themes_contains_cells_and_no_project_names():
         assert svg.count("<rect") >= 52 * 7  # a year of cells plus chrome
         assert "@someone" in svg
         assert "2026-09-25: 3 contributions" in svg
+
+
+def test_language_share_weights_by_pushes_and_aliases():
+    by_project = {1: {"TSX": 60.0, "TypeScript": 40.0}, 2: {"Go Template": 100.0}, 3: {"Rust": 100.0}}
+    weights = {1: 3, 2: 1, 3: 0}
+    share = gs.language_share(by_project, weights)
+    assert share[0] == ("TypeScript", 75.0)
+    assert share[1] == ("Helm", 25.0)
+    assert all(name != "Rust" for name, _ in share)  # zero pushes contribute nothing
+
+
+def test_language_share_folds_tail_into_other():
+    by_project = {1: {f"L{i}": 10.0 for i in range(10)}}
+    share = gs.language_share(by_project, {1: 1})
+    assert len(share) == gs.LANG_TOP + 1 and share[-1][0] == "Other"
+    assert abs(sum(v for _, v in share) - 100) < 0.5
+
+
+SITEMAP = """<urlset>
+<url><loc>https://x.pages.dev/</loc></url>
+<url><loc>https://x.pages.dev/posts/old</loc><lastmod>2024-01-01T00:00:00.000Z</lastmod></url>
+<url><loc>https://x.pages.dev/posts/new</loc><lastmod>2026-09-19T00:00:00.000Z</lastmod></url>
+</urlset>"""
+
+
+def test_latest_post_from_sitemap_picks_newest_and_rewrites_host():
+    post = gs.latest_post_from_sitemap(SITEMAP, "https://aquaoctet.com")
+    assert post == {"url": "https://aquaoctet.com/posts/new", "date": "2026-09-19"}
+
+
+def test_parse_post_meta_prefers_open_graph():
+    html = '<title>Fallback :: Site</title><meta property="og:title" content="Real &amp; Title"/>' \
+           '<meta name="description" content="Desc"/>'
+    assert gs.parse_post_meta(html) == {"title": "Real & Title", "description": "Desc"}
+
+
+def test_update_readme_replaces_only_marked_block():
+    text = f"intro\n{gs.README_START}\nold\n{gs.README_END}\noutro\n"
+    post = {"title": "T", "url": "https://s/posts/t", "date": "2026-09-19", "description": "D"}
+    out = gs.update_readme(text, post)
+    assert out.startswith("intro\n") and out.endswith("\noutro\n")
+    assert "old" not in out and "[T](https://s/posts/t)" in out and "D" in out
+    assert gs.update_readme("no markers", post) == "no markers"
+    assert gs.update_readme(text, None) == text

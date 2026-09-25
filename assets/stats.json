@@ -8,5 +8,41 @@
   "projects": 33,
   "active_days": 151,
   "current_streak": 4,
-  "longest_streak": 16
+  "longest_streak": 16,
+  "languages": [
+    [
+      "GDScript",
+      18.9
+    ],
+    [
+      "TypeScript",
+      16.1
+    ],
+    [
+      "Helm",
+      15.1
+    ],
+    [
+      "C++",
+      12.8
+    ],
+    [
+      "Dart",
+      10.8
+    ],
+    [
+      "Shell",
+      10.8
+    ],
+    [
+      "Other",
+      15.4
+    ]
+  ],
+  "latest_post": {
+    "url": "https://aquaoctet.com/posts/ideal-router-six-months-later",
+    "date": "2026-09-19",
+    "title": "The Ideal Router, Six Months Later",
+    "description": "A status report on the Protectli + Quectel + OpenWRT travel router. Real numbers, the bugs that cost me days, the tooling I built to stop repeating them, and the SIM card that loads eSIM profiles into a router with only a physical SIM slot."
+  }
 }
