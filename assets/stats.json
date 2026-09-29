@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-28",
-  "commits": 5872,
+  "generated": "2026-09-29",
+  "commits": 5871,
   "mrs_merged": 547,
   "mrs_opened": 293,
   "issues_opened": 84,
   "issues_closed": 205,
   "projects": 33,
-  "active_days": 152,
+  "active_days": 151,
   "current_streak": 0,
   "longest_streak": 16,
   "languages": [
@@ -24,11 +24,11 @@
     ],
     [
       "C++",
-      12.8
+      12.9
     ],
     [
       "Dart",
-      10.8
+      10.9
     ],
     [
       "Shell",
