@@ -1,42 +1,42 @@
 {
-  "generated": "2026-10-19",
-  "commits": 8077,
-  "mrs_merged": 615,
-  "mrs_opened": 326,
-  "issues_opened": 126,
-  "issues_closed": 276,
+  "generated": "2026-10-21",
+  "commits": 8294,
+  "mrs_merged": 632,
+  "mrs_opened": 328,
+  "issues_opened": 140,
+  "issues_closed": 295,
   "projects": 35,
-  "active_days": 165,
-  "current_streak": 8,
+  "active_days": 167,
+  "current_streak": 10,
   "longest_streak": 16,
   "languages": [
     [
       "GDScript",
-      19.2
-    ],
-    [
-      "TypeScript",
-      13.7
-    ],
-    [
-      "C++",
-      13.4
-    ],
-    [
-      "Helm",
-      13.3
+      18.8
     ],
     [
       "Shell",
-      13.2
+      14.1
+    ],
+    [
+      "C++",
+      13.5
+    ],
+    [
+      "TypeScript",
+      13.3
+    ],
+    [
+      "Helm",
+      13.0
     ],
     [
       "Dart",
-      9.6
+      9.3
     ],
     [
       "Other",
-      17.7
+      18.0
     ]
   ],
   "latest_post": {
